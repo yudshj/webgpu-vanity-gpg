@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <link rel="icon" type="image/svg+xml" href="/vite.svg">
-        <meta name="author" content="TransparentLC">
+        <meta name="author" content="yudshj">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>webgl-vanity-gpg</title>
+        <title>webgpu-vanity-gpg</title>
         <style>
             [v-scope] {
                 display: none;
@@ -50,13 +50,13 @@
     <body class="container" v-scope @vue:mounted="mounted">
         <header class="terminal-nav" style="display:flex;justify-content:right;align-items:center;flex-direction:row">
             <div class="terminal-logo">
-                <div class="logo terminal-prompt">webgl-vanity-gpg</div>
+                <div class="logo terminal-prompt">webgpu-vanity-gpg</div>
             </div>
             <div style="flex-grow:1"></div>
-            <a href="https://github.com/TransparentLC/webgl-vanity-gpg" style="display:flex;background:none"><img src="https://img.shields.io/github/stars/TransparentLC/webgl-vanity-gpg?style=social"></a>
+            <a href="https://github.com/yudshj/webgpu-vanity-gpg" style="display:flex;background:none"><img src="https://img.shields.io/github/stars/yudshj/webgpu-vanity-gpg?style=social"></a>
         </header>
         <main>
-            <p>使用 GPU（WebGL）快速生成带有“靓号”的 PGP 密钥！</p>
+            <p>使用 GPU（WebGPU）快速生成带有“靓号”的 PGP 密钥！</p>
             <p>“靓号”指的是带有连号等特定格式的密钥指纹或 ID（例如以 <code>77777777</code> 结尾），具体介绍和生成原理请参见：</p>
             <ul>
                 <li><a href="https://www.douban.com/note/763978955/">一位 PGP 进步青年的科学算号实践</a></li>
@@ -104,7 +104,7 @@
             <p>根据 GPU 性能和占用率调节这两个值。</p>
             <p>你会得到一个生效时间距离现在 {{ (backTime > 2592000) ? `${Math.ceil(backTime / 2592000)} 个月` : `${Math.ceil(backTime / 86400)} 天` }}之内（最早为 <code>{{ (new Date(Date.now() - backTime * 1000)).toISOString() }}</code>）的密钥。</p>
             <div class="form-group">
-                <label>密钥指纹格式 <a @click="showAutoFilter">查看 GLSL 代码</a></label>
+                <label>密钥指纹格式 <a @click="showAutoFilter">查看 WGSL 代码</a></label>
                 <input v-model="pattern" type="text" required style="font-variant-ligatures:none">
                 <input v-model="vanitySubkey" type="checkbox">将格式应用到子密钥而不是主密钥上
             </div>
@@ -112,11 +112,11 @@
             <p>最后 <input v-model="patternLength" style="width:3em;padding:unset;text-align:center" type="number" min="1" max="40"> 个数字为 <input v-model="patternNumber" style="width:1em;padding:unset;text-align:center" type="text" pattern="[\dA-Fa-fXx]"> <a @click="patternHelper">快速设置</a></p>
             <p>预计需要计算 {{ estimatedHashCount }} 次 hash，实际的计算次数可能是这个值的几分之一或几倍，也许需要一点运气……</p>
             <details style="margin-bottom:var(--global-line-height)">
-                <summary>直接使用 GLSL 代码！</summary>
+                <summary>直接使用 WGSL 代码！</summary>
                 <div class="terminal-card" style="margin-bottom:var(--global-line-height)">
                     <textarea v-model="filter" style="border:none" rows="5"></textarea>
                 </div>
-                <p>你可以自行编写更复杂的判断密钥指纹是否符合格式的 GLSL 代码，这些代码将以 `#define FILTER(h) (code)` 的形式出现在算号使用的着色器中。</p>
+                <p>你可以自行编写更复杂的判断密钥指纹是否符合格式的 WGSL 代码，这些代码将以 `#define FILTER(h) (code)` 的形式出现在算号使用的着色器中。</p>
                 <p>换行会被替换成空格，留空则会使用“密钥指纹格式”的设定，输入错误的代码将无法得到任何密钥。</p>
                 <p>在着色器中，计算的密钥指纹（实际上是 80 bytes 的 SHA-1 hash）以大端序保存为 `uint[5]`，并使用上面的 `FILTER` 来检查是否符合格式。</p>
             </details>
@@ -179,7 +179,7 @@
             </div>
             <hr>
             <footer style="text-align:center">
-                <p><small>© 2024 ✨小透明・宸✨ <a href="https://github.com/TransparentLC/webgl-vanity-gpg">源代码</a></small></p>
+                <p><small>© 2024 ✨小透明・宸✨ <a href="https://github.com/yudshj/webgpu-vanity-gpg">源代码</a></small></p>
             </footer>
         </main>
         <script type="module" src="/src/main.ts"></script>

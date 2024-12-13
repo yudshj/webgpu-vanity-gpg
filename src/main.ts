@@ -1,3 +1,4 @@
+// @ts-ignore
 import { createApp } from 'petite-vue';
 import {
     readPrivateKey,
@@ -219,8 +220,8 @@ const app: {
                             body: JSON.stringify({
                                 topic: this.notification.ntfyTopic,
                                 markdown: true,
-                                title: 'webgl-vanity-gpg 计算出了新的密钥！',
-                                message: 'Fingerprint: `' + this.formatFingerprint(generatedKey.publicKey.getFingerprint()) + '`\n\nCreated: ' + generatedKey.publicKey.getCreationTime().toISOString() + '\n\n请回到打开的 webgl-vanity-gpg 页面，在页面上/控制台中查看生成的密钥。',
+                                title: 'webgpu-vanity-gpg 计算出了新的密钥！',
+                                message: 'Fingerprint: `' + this.formatFingerprint(generatedKey.publicKey.getFingerprint()) + '`\n\nCreated: ' + generatedKey.publicKey.getCreationTime().toISOString() + '\n\n请回到打开的 webgpu-vanity-gpg 页面，在页面上/控制台中查看生成的密钥。',
                             }),
                         });
                     }

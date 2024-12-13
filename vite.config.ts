@@ -25,7 +25,7 @@ export default defineConfig({
             return ({
                 name: 'minify-shader',
                 async transform(code, id) {
-                    if (id.endsWith('.glsl?raw')) {
+                    if (id.endsWith('.wgsl?raw')) {
                         const temp = path.join(os.tmpdir(), Math.random().toString(36).substring(2, 10));
                         const result: TransformResult = {
                             code: '',

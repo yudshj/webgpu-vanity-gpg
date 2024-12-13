@@ -1,6 +1,6 @@
-# webgl-vanity-gpg
+# webgpu-vanity-gpg
 
-使用 GPU（WebGL）快速生成带有“靓号”的 PGP 密钥！
+使用 GPU（WebGPU）快速生成带有“靓号”的 PGP 密钥！
 
 “靓号”指的是带有连号等特定格式的密钥指纹或 ID（例如以 `77777777` 结尾），具体介绍和生成原理请参见：
 
